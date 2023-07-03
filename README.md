@@ -32,8 +32,7 @@ pip install -r requirements.txt
 
 ## Run
 ```shell
-cd src
-python main.py
+python src/main.py
 ```
 
 # Result

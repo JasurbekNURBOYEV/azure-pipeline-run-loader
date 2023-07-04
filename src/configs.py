@@ -8,16 +8,15 @@ from models import Config
 def get_file_path(file_name: str) -> str:
     current_path = Path(os.getcwd())
     file_path = os.path.join(current_path, file_name)
-    print(file_path)
     return file_path
 
 
 def load_configs(file_name: str = "config.json") -> Optional[Config]:
     file_path = get_file_path(file_name)
-    print(file_path)
     if not os.path.exists(file_path):
         return None
 
+    print("Config file found at", file_path)
     with open(file_path, "r") as f:
         data = json.loads(f.read())
     return Config(**data)
@@ -43,9 +42,9 @@ def create_config():
             break
 
     pat, url = inputs.values()
-
     config = Config(personal_access_token=pat, organization_url=url)
-    file_path = get_file_path("../config.json")
+    file_path = get_file_path("config.json")
+    print("Creating config file at", file_path)
     with open(file_path, "w") as f:
         f.write(
             json.dumps(

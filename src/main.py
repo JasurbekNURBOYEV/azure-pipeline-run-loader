@@ -1,12 +1,18 @@
+import sys
+
 import db
 from client import Client
 import configs
+from models import Config
 
 
-def main():
-    config = configs.load_configs()
-    if not config:
-        config = configs.create_config()
+def main(default_configs: Config = None):
+    if not default_configs:
+        config = configs.load_configs()
+        if not config:
+            config = configs.create_config()
+    else:
+        config = default_configs
 
     db_connection = db.get_db_connection()
     try:
@@ -44,4 +50,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) == 3:
+        token, url = sys.argv[1:]
+        main(Config(personal_access_token=token, organization_url=url))
+    else:
+        main()

@@ -15,6 +15,28 @@ and copy & paste the content of `config_structure.json` into it, then replace va
 
 # Usage
 
+## Shortcut (for Linux/MacOS users)
+Here is a shortcut to use the whole thing. We have 2 scripts: `setup.sh` and `run.sh`.
+You need to give the scripts necessary permissions first:
+```shell
+chmod +xwr setup.sh
+chmod +xwr run.sh
+```
+Then run them
+```shell 
+./setup.sh
+```
+It will create Python virtual environment and install dependencies.
+```shell
+./run.sh
+```
+This will run the main script. Actually, there are 2 ways to use it:
+   1. just run it without any arguments: `./run.sh`. It will get credentials (token and organization url from `config.json`)
+   2. run it with 2 arguments: token and organization url. Sample: `./run.sh <token> <organization-url>`
+
+## If you can not use the shortcut scripts
+**I explain how to do these things all manually. You can skip the steps below if ou can use the shortcut.** 
+
 ## Create virtual environment and activate it
 
 On macOS and Linux
